@@ -161,21 +161,21 @@ def sckt():
     mn = baglanti.recv(1024)
     global cm
     metin=mn.split(" ")
-    if metin[1] == 'bt':
+    if metin[1] == 'left':
 		durum=2
-		baglanti.sendall("sol\n")
-    if metin[1] == 'btt':
+		baglanti.sendall("turningleft\n")
+    if metin[1] == 'right':
 		durum=1
-    		baglanti.sendall("sag\n")
-    if metin[1] == "bos":
+    		baglanti.sendall("turningright\n")
+    if metin[1] == "stop":
 		durum=0
 		setStep(0,0,0,0)
-		baglanti.sendall("bos\n")  
+		baglanti.sendall("stopped\n")  
     if metin[0] == "sld":
 		delay=float(int(metin[1])*0.0985/100)
 		#delay=float(metin[1]*0.0985)/100
 		baglanti.sendall("ps\n")
-    if metin[0] == "kamera":
+    if metin[0] == "camera":
 		
 		if metin[1] == "ac":
 			cm=1
@@ -184,7 +184,7 @@ def sckt():
 		
 		baglanti.sendall(str(cm)+"\n")
     else:
-	baglanti.sendall("pisi\n")    
+	baglanti.sendall("empty\n")    
 if __name__ == "__main__":
 	import thread
 	thread.start_new_thread(sckt,())
